@@ -7,6 +7,14 @@ const Review = () => {
 const [index, setIndex] = useState(1)   
 const {text, name, image, job} = peopleData[index];
 
+const randomPersonHandler = () => {
+    let random = Math.floor(Math.random() * peopleData.length);
+    if (random === index){
+        random = index + 1
+    }
+    setIndex(indexChecker(random));
+}
+
 const indexChecker = (number) => {
 
     if(number > peopleData.length -1)
@@ -50,7 +58,7 @@ return (
             <FaChevronRight />
         </button>
     </div>
-    <button className="random-btn" >
+    <button className="random-btn" onClick={randomPersonHandler}>
         random
     </button>
 </article>
