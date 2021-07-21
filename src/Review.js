@@ -7,6 +7,32 @@ const Review = () => {
 const [index, setIndex] = useState(1)   
 const {text, name, image, job} = peopleData[index];
 
+const indexChecker = (number) => {
+
+    if(number > peopleData.length -1)
+    {
+        return 0;
+    }
+    if (number < 0){
+        return peopleData.length -1;
+    }
+    return number;
+
+}
+const nextButtonHandler = () => {
+setIndex((index) => {
+const newIndex = index + 1;
+return indexChecker(newIndex);
+})
+}
+
+const prevButtonHandler = () => {
+    setIndex((index) => {
+    const newIndex = index - 1;
+    return indexChecker(newIndex);
+    })
+    }
+
 return (
 <article className="review">
     <div className="img-container">
@@ -17,14 +43,14 @@ return (
     <p className="job">{job}</p> 
     <p className="info">{text}</p>
     <div className="button-container">
-        <button className="prev-btn">
+        <button className="prev-btn" onClick={prevButtonHandler}>
             <FaChevronLeft />
         </button>
-        <button className="next-btn">
+        <button className="next-btn" onClick={nextButtonHandler}>
             <FaChevronRight />
         </button>
     </div>
-    <button className="random-btn">
+    <button className="random-btn" >
         random
     </button>
 </article>
